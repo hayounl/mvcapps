@@ -1,0 +1,8 @@
+load 1 8
+load 2 7
+load 3 -1
+mul 2 3 4
+add 1 4 5
+bgt 5 2
+load 0 1
+halt

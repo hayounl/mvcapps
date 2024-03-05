@@ -1,0 +1,20 @@
+load 1 9
+load 2 2
+load 3 1
+load 5 0
+load 4 -1
+load 8 1
+
+add 5 8 5
+mul 2 3 3
+mul 3 4 6
+add 1 6 7
+bgt 7 -5
+blt 7 2
+move 5 0
+halt
+add 5 4 5
+move 5 0
+halt
+
+
