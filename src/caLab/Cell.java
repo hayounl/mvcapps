@@ -11,7 +11,7 @@ public abstract class Cell extends Publisher implements Serializable {
     protected Set<Cell> neighbors = new HashSet<Cell>();
     protected Grid myGrid = null;
     protected Cell partner = null;
-
+    protected Color color = null;
 
     // choose a random neighbor as a partner
     public void choosePartner() {
@@ -47,7 +47,7 @@ public abstract class Cell extends Publisher implements Serializable {
     public abstract void reset(boolean randomly);
     public abstract int getStatus();
     public Color getColor() {
-        return Color.BLACK;
+        return color;
     }
 
 }

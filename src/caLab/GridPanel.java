@@ -126,7 +126,7 @@ public class GridPanel extends JPanel implements ActionListener {
             clear.addActionListener(GridPanel.this);
 
             p.add(run1);
-            p.setBorder(BorderFactory.createEmptyBorder(30,20,20,20));
+            p.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
             p2.add(run50);
             p2.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
             p3.add(populate);
