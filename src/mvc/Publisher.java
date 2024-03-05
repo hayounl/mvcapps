@@ -1,18 +1,18 @@
 package mvc;
 
-import tools.Subscriber;
+import mvc.Subscriber;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class Publisher {
-    private List<tools.Subscriber> observers = new LinkedList<tools.Subscriber>();
+    private List<Subscriber> observers = new LinkedList<Subscriber>();
 
-    public void subscribe(tools.Subscriber s) {
+    public void subscribe(Subscriber s) {
         observers.add(s);
     }
 
-    public void unsubscribe(tools.Subscriber s) {
+    public void unsubscribe(Subscriber s) {
         observers.remove(s);
     }
     public void notifySubscribers() {

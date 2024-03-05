@@ -14,8 +14,6 @@ public abstract class Grid extends Model {
     public int getTime() { return time; }
     public Cell getCell(int row, int col) { return cells[row][col]; }
     public abstract Cell makeCell(boolean uniform);
-
-
     public Grid(int dim) {
         this.dim = dim;
         cells = new Cell[dim][dim];
@@ -46,6 +44,7 @@ public abstract class Grid extends Model {
         Tricky part: cells in row/col 0 or dim - 1.
         The asker is not a neighbor of itself.
         */
+        return null;
     }
 
     // overide these

@@ -1,10 +1,11 @@
 package CALab;
 
+import java.awt.*;
 import java.util.*;
 import java.io.*;
 import mvc.*;
 
-abstract class Cell extends Publisher implements Serializable {
+public abstract class Cell extends Publisher implements Serializable {
 
     protected int row = 0, col = 0;
     protected Set<Cell> neighbors = new HashSet<Cell>();
@@ -44,5 +45,9 @@ abstract class Cell extends Publisher implements Serializable {
     public abstract void nextState();
     // set status to a random or initial value
     public abstract void reset(boolean randomly);
+    public abstract int getStatus();
+    public Color getColor() {
+        return Color.BLACK;
+    }
 
 }
