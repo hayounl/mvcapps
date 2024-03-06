@@ -4,7 +4,6 @@ import java.awt.*;
 import java.util.*;
 
 import mvc.*;
-import CALab.Cell;
 
 public abstract class Grid extends Model {
     static private int time = 0;

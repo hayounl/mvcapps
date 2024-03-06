@@ -1,6 +1,5 @@
 package mvc;
 
-import mvc.Subscriber;
 
 import java.util.LinkedList;
 import java.util.List;
