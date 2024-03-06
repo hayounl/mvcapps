@@ -25,14 +25,27 @@ public abstract class Grid extends Model {
     protected void populate() {
         // 1. use makeCell to fill in cells
         // 2. use getNeighbors to set the neighbors field of each cell
+
     }
 
     // called when Populate button is clicked
     public void repopulate(boolean randomly) {
         if (randomly) {
             // randomly set the status of each cell
+            Random random = new Random();
+            for (int i = 0; i < cells.length; i++){
+                for (int j = 0; j < cells[i].length;j++){
+                    cells[i][j].setStatus(random.nextInt(8));
+                }
+            }
+
         } else {
             // set the status of each cell to 0 (dead)
+            for (int i = 0; i < cells.length; i++){
+                for (int j = 0; j < cells[i].length;j++){
+                    cells[i][j].setStatus(0);
+                }
+            }
         }
         // notify subscribers
     }
@@ -57,13 +70,23 @@ public abstract class Grid extends Model {
                 cells[i][j].observe();
             }
         }
+        notifySubscribers();
     }
     public void interact() {
-        // ???
+        for (int i = 0; i < cells.length; i++){
+            for (int j = 0; j < cells[i].length;j++){
+                cells[i][j].interact();
+            }
+        }
+        notifySubscribers();
     }
     public void update() {
-        // ???
-    }
+        for (int i = 0; i < cells.length; i++){
+            for (int j = 0; j < cells[i].length;j++){
+                cells[i][j].update();
+            }
+        }
+        notifySubscribers();    }
     public void updateLoop(int cycles) {
         observe();
         for(int cycle = 0; cycle < cycles; cycle++) {

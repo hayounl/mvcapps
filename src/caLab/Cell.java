@@ -3,7 +3,6 @@ package CALab;
 import java.awt.*;
 import java.util.*;
 import java.io.*;
-import java.util.List;
 import java.util.Random;
 
 import mvc.*;
@@ -14,6 +13,8 @@ public abstract class Cell extends Publisher implements Serializable {
     protected Set<Cell> neighbors = new HashSet<Cell>();
     protected Grid myGrid = null;
     protected Cell partner = null;
+    protected Color color = Color.BLACK;
+    protected int status = 0;
 
 
     // choose a random neighbor as a partner
@@ -50,7 +51,6 @@ public abstract class Cell extends Publisher implements Serializable {
         }
 
     }
-
     public void unpartner() {
         if (partner != null) {
             if (partner.partner != null) {
@@ -71,8 +71,13 @@ public abstract class Cell extends Publisher implements Serializable {
     // set status to a random or initial value
     public abstract void reset(boolean randomly);
     public abstract int getStatus();
+
+    public void setStatus(int i){
+        status=i;
+    }
+
     public Color getColor() {
-        return Color.BLACK;
+        return color;
     }
 
 }
