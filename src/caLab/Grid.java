@@ -56,7 +56,27 @@ public abstract class Grid extends Model {
         Tricky part: cells in row/col 0 or dim - 1.
         The asker is not a neighbor of itself.
         */
-        return null;
+        Set<Cell> myNeighbors = new HashSet<Cell>();
+        int row = asker.row;
+        int col = asker.col;
+        int n = dim -1;
+        int top = (row-1)%dim;
+        int below = (row+1)%dim;
+        int left = (col-1)%dim;
+        int right = (col+1)%dim;
+        //row above
+        myNeighbors.add(cells[top][left]);
+        myNeighbors.add(cells[top][col]);
+        myNeighbors.add(cells[top][right]);
+        //row on
+        myNeighbors.add(cells[row][left]);
+        myNeighbors.add(cells[row][right]);
+        //row below
+        myNeighbors.add(cells[below][left]);
+        myNeighbors.add(cells[below][col]);
+        myNeighbors.add(cells[below][right]);
+
+        return myNeighbors;
     }
 
     // overide these
