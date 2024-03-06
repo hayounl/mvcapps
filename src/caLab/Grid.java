@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.*;
 
 import mvc.*;
+import CALab.Cell;
 
 public abstract class Grid extends Model {
     static private int time = 0;
@@ -35,8 +36,6 @@ public abstract class Grid extends Model {
         }
         // notify subscribers
     }
-
-
     public Set<Cell> getNeighbors(Cell asker, int radius) {
         /*
         return the set of all cells that can be reached from the asker in radius steps.
@@ -50,21 +49,21 @@ public abstract class Grid extends Model {
     // overide these
     public int getStatus() { return 0; }
     public Color getColor() { return Color.GREEN; }
-
     // cell phases:
-
     public void observe() {
         // call each cell's observe method and notify subscribers
+        for (int i = 0; i < cells.length; i++){
+            for (int j = 0; j < cells[i].length;j++){
+                cells[i][j].observe();
+            }
+        }
     }
-
     public void interact() {
         // ???
     }
-
     public void update() {
         // ???
     }
-
     public void updateLoop(int cycles) {
         observe();
         for(int cycle = 0; cycle < cycles; cycle++) {
