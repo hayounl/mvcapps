@@ -1,6 +1,6 @@
 package mvc;
 
-public interface Subscriber {
-    // called by notifySubscribers and GridView.update
+import java.util.*;
+public interface Subscriber{
     public void update();
 }
