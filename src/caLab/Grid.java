@@ -23,12 +23,14 @@ public abstract class Grid extends Model {
 
     protected void populate() {
         // 1. use makeCell to fill in cells
+        makeCell(true);
         // 2. use getNeighbors to set the neighbors field of each cell
 
     }
 
     // called when Populate button is clicked
     public void repopulate(boolean randomly) {
+        //should call reset
         if (randomly) {
             // randomly set the status of each cell
             Random random = new Random();

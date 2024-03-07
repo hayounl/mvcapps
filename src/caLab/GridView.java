@@ -7,10 +7,11 @@ import mvc.*;
 import java.awt.*;
 
 public class GridView extends View {
-    private LifeGrid grid;
+    private Grid grid;
     private CellView cellViews[][];
 
-    public GridView(Model model) {
+    public GridView(Grid grid) {
+        super(grid);
         /*
         Cell cell = new CellView(((Grid)model).getCell(row, col)
         cellViews[row][col] = cell
