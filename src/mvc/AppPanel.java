@@ -6,20 +6,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.*;
 
-public class AppPanel extends JPanel implements ActionListener {
+public class AppPanel extends JPanel implements ActionListener, PropertyChangeListener {
     private Model model;
-    private ControlPanel controls;
+    protected ControlPanel controlPanel;
     private View view;
-
-    public AppPanel() {
-        model = new Model();
-        controls = new ControlPanel();
-        view = new View(model);
+    public AppPanel(AppFactory factory) {
+        model = factory.makeModel();
+        controlPanel = new ControlPanel();
+        view = factory.makeView();
 
         this.setLayout(new GridLayout(1, 2));
-        this.add(controls, BorderLayout.CENTER);
+        this.add(controlPanel, BorderLayout.CENTER);
         JPanel p = new JPanel();
         p.setLayout(new GridLayout(1, 1));
         p.add(view);
@@ -93,9 +94,15 @@ public class AppPanel extends JPanel implements ActionListener {
         }
     }
 
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+
+    }
+
     class ControlPanel extends JPanel {
         public ControlPanel() {
             setBackground(Color.GRAY);
+            setLayout(new BorderLayout());
         }
 
     }
