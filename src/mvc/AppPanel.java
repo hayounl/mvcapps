@@ -58,7 +58,7 @@ public class AppPanel extends JPanel implements ActionListener, Subscriber {
         String cmd = e.getActionCommand();
         boolean found = false;
         try {
-            for (String s : model.getEditCommands()){
+            for (String s : factory.getEditCommands()){
                 if(s.equals(cmd)){
                     found = true;
                     break;
