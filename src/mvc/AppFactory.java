@@ -17,4 +17,5 @@ public interface AppFactory {
     default Command makeEditCommand(Model model, String type){
         return new Command(model);
     }
+    default String[] getEditCommands(){return new String[]{};}
 }
