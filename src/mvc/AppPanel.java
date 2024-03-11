@@ -10,33 +10,43 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.*;
 
-public class AppPanel extends JPanel implements ActionListener, PropertyChangeListener {
+public class AppPanel extends JPanel implements ActionListener, Subscriber {
+    private static final int FRAME_WIDTH = 500;
+    private static final int FRAME_HEIGHT = 500;
     private Model model;
+    private JFrame frame;
     protected ControlPanel controlPanel = new ControlPanel();
     private View view;
+    private AppFactory factory;
     public AppPanel(AppFactory factory) {
+        this.factory = factory;
         model = factory.makeModel();
         //controlPanel = new ControlPanel();
         view = factory.makeView();
-
+        view.setBackground(Color.GRAY);
+        //controlPanel = new JPanel();
+        controlPanel.setBackground(Color.PINK);
         this.setLayout(new GridLayout(1, 2));
         this.add(controlPanel, BorderLayout.CENTER);
-        JPanel p = new JPanel();
-        p.setLayout(new GridLayout(1, 1));
-        p.add(view);
+        this.add(view);
 
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        model.subscribe(this);
+
+        frame = new SafeFrame();
+        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container cp = frame.getContentPane();
         cp.add(this);
         frame.setJMenuBar(this.createMenuBar());
-        frame.setTitle(model.fileName);
-        frame.setSize(500, 500);
-        frame.setMinimumSize(new Dimension(400, 250));
-        frame.setVisible(true);
+        //frame.setTitle(model.fileName);
+        frame.setTitle(factory.getTitle());
+        //frame.setSize(500, 500);
+        frame.setSize(FRAME_WIDTH,FRAME_HEIGHT);
+        //frame.setMinimumSize(new Dimension(400, 250));
+        //frame.setVisible(true);
 
     }
 
+    public void display() {frame.setVisible(true);}
     protected JMenuBar createMenuBar() {
         JMenuBar result = new JMenuBar();
         JMenu fileMenu = tools.Utilities.makeMenu("File", new String[]{"New", "Save", "Open", "Quit"}, this);
@@ -95,7 +105,7 @@ public class AppPanel extends JPanel implements ActionListener, PropertyChangeLi
     }
 
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {
+    public void update() {
 
     }
 
