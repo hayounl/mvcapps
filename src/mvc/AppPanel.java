@@ -13,17 +13,15 @@ public class AppPanel extends JPanel implements ActionListener, Subscriber {
     private static final int FRAME_HEIGHT = 500;
     private Model model;
     private JFrame frame;
-    //protected ControlPanel controlPanel = new ControlPanel();
     protected JPanel controlPanel;
     private View view;
     private AppFactory factory;
     public AppPanel(AppFactory factory) {
         this.factory = factory;
         model = factory.makeModel();
-        //controlPanel = new ControlPanel();
-        view = factory.makeView();
+        controlPanel = new ControlPanel();
+        view = factory.makeView(model);
         view.setBackground(Color.GRAY);
-        controlPanel = new JPanel();
         controlPanel.setBackground(Color.PINK);
         this.setLayout(new GridLayout(1, 2));
         this.add(controlPanel, BorderLayout.CENTER);
@@ -58,46 +56,64 @@ public class AppPanel extends JPanel implements ActionListener, Subscriber {
     @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
+        boolean found = false;
         try {
-            switch (cmd) {
-                case "Save": {
-                    String fName = Utilities.getFileName((String) null, false);
-                    ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fName));
-                    os.writeObject(this.model);
-                    os.close();
+            for (String s : model.getEditCommands()){
+                if(s.equals(cmd)){
+                    found = true;
                     break;
-                }
-
-                case "Open": {
-
-                    if (Utilities.confirm("Are you sure? Unsaved changes will be lost!")) {
-                        String fName = Utilities.getFileName((String) null, true);
-                        ObjectInputStream is = new ObjectInputStream(new FileInputStream(fName));
-                        model = (Model) is.readObject();
-                        is.close();
-                    }
-                    break;
-                }
-
-                case "New": {
-                    model = new Model();
-                    view.setModel(model);
-                    break;
-                }
-
-                case "Quit": {
-                    System.exit(0);
-                    break;
-                }
-
-                case "About": {
-                    Utilities.inform("Group 4, SJSU, 2024. All rights reserved.");
-                    break;
-                }
-                default: {
-                    throw new Exception("Unrecognized command: " + cmd);
                 }
             }
+            if(found){
+                Command c = factory.makeEditCommand(model, cmd);
+                c.execute();
+            }
+            else{
+                switch (cmd) {
+                    case "Save": {
+                        String fName = Utilities.getFileName((String) null, false);
+                        ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fName));
+                        os.writeObject(this.model);
+                        os.close();
+                        break;
+                    }
+
+                    case "Open": {
+
+                        if (Utilities.confirm("Are you sure? Unsaved changes will be lost!")) {
+                            String fName = Utilities.getFileName((String) null, true);
+                            ObjectInputStream is = new ObjectInputStream(new FileInputStream(fName));
+                            model = (Model) is.readObject();
+                            is.close();
+                        }
+                        break;
+                    }
+
+                    case "New": {
+                        model = new Model();
+                        view.setModel(model);
+                        break;
+                    }
+
+                    case "Quit": {
+                        System.exit(0);
+                        break;
+                    }
+
+                    case "About": {
+                        Utilities.inform(factory.about());
+                        break;
+                    }
+                    case "Help":{
+                        Utilities.inform(factory.getHelp());
+                        break;
+                    }
+                    default: {
+                        throw new Exception("Unrecognized command: " + cmd);
+                    }
+                }
+            }
+
         } catch (Exception ex) {
             Utilities.error(ex);
         }
@@ -111,7 +127,9 @@ public class AppPanel extends JPanel implements ActionListener, Subscriber {
     class ControlPanel extends JPanel {
         public ControlPanel() {
             setBackground(Color.GRAY);
-            setLayout(new BorderLayout());
+            JPanel p = new JPanel();
+
+            //setLayout(new BorderLayout());
         }
 
     }
