@@ -9,6 +9,7 @@ public class Model extends Publisher implements Serializable {
         unsavedChanges = true;
         notifySubscribers();
     }
+    public String[] getEditCommands(){return new String[]{};}
     public String getFileName(){
         return fileName;
     }

@@ -10,6 +10,8 @@ public class Command extends JPanel implements Subscriber {
         this.model = model;
     }
 
+    public void execute(){
+    }
     @Override
     public void update() {
 
