@@ -12,11 +12,11 @@ import java.io.*;
 
 public class AppPanel extends JPanel implements ActionListener, PropertyChangeListener {
     private Model model;
-    protected ControlPanel controlPanel;
+    protected ControlPanel controlPanel = new ControlPanel();
     private View view;
     public AppPanel(AppFactory factory) {
         model = factory.makeModel();
-        controlPanel = new ControlPanel();
+        //controlPanel = new ControlPanel();
         view = factory.makeView();
 
         this.setLayout(new GridLayout(1, 2));

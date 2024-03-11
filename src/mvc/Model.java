@@ -7,6 +7,7 @@ public class Model extends Publisher implements Serializable {
     protected String fileName = null;
 
     public void changed(){
+        unsavedChanges = true;
         //some implementation here.
 
     }
