@@ -6,7 +6,7 @@ import mvc.*;
 public class GridFactory implements AppFactory {
     @Override
     public Model makeModel() {
-        return new Some Grid??();
+        return new Grid();
     }
     @Override
     public View makeView(Model model){

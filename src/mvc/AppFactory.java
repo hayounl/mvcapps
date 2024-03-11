@@ -6,7 +6,11 @@ public interface AppFactory {
     //public default AppPanel makeAppPanel (){
     //    return new AppPanel();
     //}
-    Model makeModel();
-    String getTitle();
+    public default Model makeModel(){
+        return new Model();
+    }
+    public default String getTitle() {
+        return "";
+    }
 
 }
