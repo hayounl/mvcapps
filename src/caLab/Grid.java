@@ -36,7 +36,7 @@ public abstract class Grid extends Model {
             Random random = new Random();
             for (int i = 0; i < cells.length; i++){
                 for (int j = 0; j < cells[i].length;j++){
-                    cells[i][j].setStatus(random.nextInt(8));
+                   // cells[i][j].setStatus(random.nextInt(8));
                 }
             }
 
@@ -44,7 +44,7 @@ public abstract class Grid extends Model {
             // set the status of each cell to 0 (dead)
             for (int i = 0; i < cells.length; i++){
                 for (int j = 0; j < cells[i].length;j++){
-                    cells[i][j].setStatus(0);
+                   // cells[i][j].setStatus(0);
                 }
             }
         }
