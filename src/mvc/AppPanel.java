@@ -6,8 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.*;
 
 public class AppPanel extends JPanel implements ActionListener, Subscriber {
@@ -15,7 +13,8 @@ public class AppPanel extends JPanel implements ActionListener, Subscriber {
     private static final int FRAME_HEIGHT = 500;
     private Model model;
     private JFrame frame;
-    protected ControlPanel controlPanel = new ControlPanel();
+    //protected ControlPanel controlPanel = new ControlPanel();
+    protected JPanel controlPanel;
     private View view;
     private AppFactory factory;
     public AppPanel(AppFactory factory) {
@@ -24,7 +23,7 @@ public class AppPanel extends JPanel implements ActionListener, Subscriber {
         //controlPanel = new ControlPanel();
         view = factory.makeView();
         view.setBackground(Color.GRAY);
-        //controlPanel = new JPanel();
+        controlPanel = new JPanel();
         controlPanel.setBackground(Color.PINK);
         this.setLayout(new GridLayout(1, 2));
         this.add(controlPanel, BorderLayout.CENTER);
