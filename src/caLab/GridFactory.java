@@ -1,11 +1,11 @@
 package CALab;
 
+import CALab.life.LifeGrid;
 import mvc.*;
-import stoplight2.ChangeCommand;
 
 public class GridFactory implements AppFactory {
-    public Model makeModel() {return new Grid(new Cell());}
-    public View makeView(Model m){return new CellView((Cell)m);}
+    public Model makeModel() {return new LifeGrid(20);}
+    public View makeView(Model m){return new GridView((Grid)m);}
     public String[] getEditCommands() { return new String[] {"Run1", "Run50", "Populate", "Clear"}; }
     public Command makeEditCommand(Model model, String type) {
         if (type == "Run1" || type == "Run50")
