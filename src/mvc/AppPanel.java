@@ -19,7 +19,7 @@ public class AppPanel extends JPanel implements ActionListener, Subscriber {
     public AppPanel(AppFactory factory) {
         this.factory = factory;
         model = factory.makeModel();
-        controlPanel = new ControlPanel();
+        controlPanel = new JPanel();
         view = factory.makeView(model);
         view.setBackground(Color.GRAY);
         controlPanel.setBackground(Color.PINK);
@@ -121,16 +121,6 @@ public class AppPanel extends JPanel implements ActionListener, Subscriber {
 
     @Override
     public void update() {
-
-    }
-
-    class ControlPanel extends JPanel {
-        public ControlPanel() {
-            setBackground(Color.GRAY);
-            JPanel p = new JPanel();
-
-            //setLayout(new BorderLayout());
-        }
 
     }
 }
