@@ -42,7 +42,6 @@ public class AppPanel extends JPanel implements ActionListener, Subscriber {
         //frame.setVisible(true);
 
     }
-
     public void display() {frame.setVisible(true);}
     protected JMenuBar createMenuBar() {
         JMenuBar result = new JMenuBar();
@@ -129,7 +128,7 @@ public class AppPanel extends JPanel implements ActionListener, Subscriber {
         view.setModel(this.model);
         model.changed();
     }
-
+    public Model getModel() { return model; }
 
     @Override
     public void update() {
