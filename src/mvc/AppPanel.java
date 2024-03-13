@@ -1,6 +1,6 @@
 package mvc;
 
-import tools.Utilities;
+import mvc.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,6 +48,8 @@ public class AppPanel extends JPanel implements ActionListener, Subscriber {
         JMenuBar result = new JMenuBar();
         JMenu fileMenu = tools.Utilities.makeMenu("File", new String[]{"New", "Save", "Open", "Quit"}, this);
         result.add(fileMenu);
+        JMenu editMenu = Utilities.makeMenu("Edit", factory.getEditCommands(), this);
+        result.add(editMenu);
         JMenu helpMenu = Utilities.makeMenu("Help", new String[]{"About", "Help"}, this);
         result.add(helpMenu);
         return result;
@@ -71,31 +73,31 @@ public class AppPanel extends JPanel implements ActionListener, Subscriber {
             else{
                 switch (cmd) {
                     case "Save": {
-                        String fName = Utilities.getFileName((String) null, false);
-                        ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fName));
-                        os.writeObject(this.model);
-                        os.close();
+                        Utilities.save(model, false);
+                        break;
+                    }
+                    case "SaveAs": {
+                        Utilities.save(model, true);
                         break;
                     }
 
                     case "Open": {
 
-                        if (Utilities.confirm("Are you sure? Unsaved changes will be lost!")) {
-                            String fName = Utilities.getFileName((String) null, true);
-                            ObjectInputStream is = new ObjectInputStream(new FileInputStream(fName));
-                            model = (Model) is.readObject();
-                            is.close();
-                        }
+                        Model newModel = Utilities.open(model);
+                        if (newModel != null) setModel(newModel);
                         break;
                     }
 
                     case "New": {
-                        model = new Model();
-                        view.setModel(model);
+                        Utilities.saveChanges(model);
+                        setModel(factory.makeModel());
+                        // needed cuz setModel sets to true:
+                        model.setUnsavedChanges(false);
                         break;
                     }
 
                     case "Quit": {
+                        Utilities.saveChanges(model);
                         System.exit(0);
                         break;
                     }
@@ -118,6 +120,16 @@ public class AppPanel extends JPanel implements ActionListener, Subscriber {
             Utilities.error(ex);
         }
     }
+    // called by file/open and file/new
+    public void setModel(Model newModel) {
+        this.model.unsubscribe(this);
+        this.model = newModel;
+        this.model.subscribe(this);
+        // view must also unsubscribe then resubscribe:
+        view.setModel(this.model);
+        model.changed();
+    }
+
 
     @Override
     public void update() {
