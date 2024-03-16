@@ -17,7 +17,7 @@ public class GridView extends View {
         */
         //int len = grid.getDim();
         int len = 20;
-        //grid layout 6x6
+
         setLayout(new GridLayout(len, len));
         int numView = 0;
         //tiles color determined by odd/even
@@ -26,7 +26,10 @@ public class GridView extends View {
             for (int j = 0; j < len; j++)
             {
                 if ((j + i)%2 == 1){
-                    add(new TileView(Color.red));}
+                    TileView tile = new TileView(Color.red);
+                    tile.setText("2");
+                    add(tile);
+                }
                 else{
                     add(new TileView(Color.green));
                 }
@@ -41,6 +44,8 @@ public class GridView extends View {
             setPreferredSize(new Dimension(100,100));
             setOpaque(true);
             setBackground(color);
+            setBorder(BorderFactory.createLineBorder(Color.black));
+
         }
     }
     public void update(String msg, Object oldState, Object newState) {
