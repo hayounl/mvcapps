@@ -12,7 +12,7 @@ public abstract class Grid extends Model {
     public int getDim() { return dim; }
     public int getTime() { return time; }
     public Cell getCell(int row, int col) { return cells[row][col]; }
-    public abstract Cell makeCell(boolean uniform);
+    public abstract Cell makeCell();
     public Grid(int dim) {
         this.dim = dim;
         cells = new Cell[dim][dim];
@@ -20,32 +20,47 @@ public abstract class Grid extends Model {
     }
     public Grid() { this(20); }
 
+    // Populate() is called when the populate button is clicked
     protected void populate() {
-        // 1. use makeCell to fill in cells
-        makeCell(true);
+        // Loop through entire grid cell by cell & populate it
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                // 1. use makeCell to fill in cells
+                makeCell();
+
+                // 1.1 'repopulate' the cell as it is made
+                Random random = new Random();
+                // false = dead | true = alive
+                boolean randomly = false;
+                // 1 = Alive | 0 = Dead
+                if(random.nextInt(2) == 1) {
+                    randomly = true;
+                }
+                repopulate(randomly, i, j);
+            }
+        }
+
+        // Loop through entire grid cell by cell & set ambience levels
+        //      by calling observe()
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+
+            }
+        }
+
         // 2. use getNeighbors to set the neighbors field of each cell
 
     }
 
-    // called when Populate button is clicked
-    public void repopulate(boolean randomly) {
+    // repopulate is called when Populate is ran
+    public void repopulate(boolean randomly, int i, int j) {
         //should call reset
         if (randomly) {
-            // randomly set the status of each cell
-            Random random = new Random();
-            for (int i = 0; i < cells.length; i++){
-                for (int j = 0; j < cells[i].length;j++){
-                   // cells[i][j].setStatus(random.nextInt(8));
-                }
-            }
-
+            // set the status of each cell to 1 (alive)
+            cells[i][j].setStatus(1);
         } else {
             // set the status of each cell to 0 (dead)
-            for (int i = 0; i < cells.length; i++){
-                for (int j = 0; j < cells[i].length;j++){
-                   // cells[i][j].setStatus(0);
-                }
-            }
+            cells[i][j].setStatus(0);
         }
         // notify subscribers
     }

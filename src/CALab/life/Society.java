@@ -26,7 +26,7 @@ public class Society extends Grid {
         death.add(8);
     }
     @Override
-    public Cell makeCell(boolean uniform) {
-        return null;
+    public Cell makeCell() {
+        return new Agent(this);
     }
 }
