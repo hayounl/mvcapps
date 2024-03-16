@@ -1,5 +1,4 @@
 package CALab;
-import CALab.life.LifeGrid;
 import mvc.*;
 
 import javax.swing.*;

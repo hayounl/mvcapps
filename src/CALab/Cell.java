@@ -17,6 +17,14 @@ public abstract class Cell extends Model {
     protected Color color = null;
     protected int status = 0;
 
+    public Cell(Grid grid) {
+        myGrid = grid;
+    }
+
+    public void setStatus(int statNumber) {
+        status = statNumber;
+    }
+
     // choose a random neighbor as a partner
     public void choosePartner() {
         if (partner == null && neighbors != null) {
