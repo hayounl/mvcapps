@@ -60,6 +60,9 @@ public abstract class Grid extends Model {
             cells[i][j].setStatus(1);
         } else {
             // set the status of each cell to 0 (dead)
+            
+            // ERROR: In order for this to work, we need to attach the cells made in populate()
+            //      to the Grid object. The current error is due to cells in Grid being empty.
             cells[i][j].setStatus(0);
         }
         // notify subscribers
