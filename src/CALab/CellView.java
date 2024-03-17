@@ -18,19 +18,20 @@ public class CellView extends View {
 
     public CellView() { this(null); }
 
-   // @Override
-   // public void actionPerformed(ActionEvent e) {
-   //     myCell.nextState();
-   //     // call update needed?
-   // }
+   /* @Override
+    public void actionPerformed(ActionEvent e) {
+        myCell.nextState();
+        // call update needed?
+    }
+    */
 
-   // // called by notifySubscribers and GridView.update
-   // public void update(String msg, Object oldState, Object newState) {
-   //     setBackground(myCell.getColor());
-   //     setBorder(BorderFactory.createLineBorder(Color.black)); // needed?
-   //     setText("" + myCell.getStatus());
-   // }
-
+    // called by notifySubscribers and GridView.update
+    /* public void update(String msg, Object oldState, Object newState) {
+        setBackground(myCell.getColor());
+        setBorder(BorderFactory.createLineBorder(Color.black)); // needed?
+        setText("" + myCell.getStatus());
+    }
+     */
 }
 
 /*

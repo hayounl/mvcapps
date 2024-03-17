@@ -7,23 +7,30 @@ import java.util.Random;
 
 import mvc.*;
 
+// Hayoun changed from 'extends Publisher implements Serializable' to 'extends Model'
 public abstract class Cell extends Model {
-
     protected int row = 0, col = 0;
     protected Set<Cell> neighbors = new HashSet<Cell>();
     protected Grid myGrid = null;
     protected Cell partner = null;
 
-    protected Color color = null;
-    protected int status = 0;
+    // protected Color color = null; Color is not mentioned as being included in Cell.java
+    // protected int status = 0; Status is not mentioned as being included in Cell.java
 
+    // Default constructor
+    public Cell() {
+        // Constructor
+    }
+
+    // Added by Hayoun
     public Cell(Grid grid) {
         myGrid = grid;
     }
 
-    public void setStatus(int statNumber) {
+    // Added by Hayoun
+    /*public void setStatus(int statNumber) {
         status = statNumber;
-    }
+    }*/
 
     // choose a random neighbor as a partner
     public void choosePartner() {
@@ -58,6 +65,7 @@ public abstract class Cell extends Model {
 
         }
     }
+
     public void unpartner() {
         if (partner != null) {
             if (partner.partner != null) {
@@ -67,20 +75,26 @@ public abstract class Cell extends Model {
         }
     }
 
-    // observer neighbors' states
-    public abstract void observe();
-    // interact with a random neighbor
-    public abstract void interact();
-    // update my state
-    public abstract void update();
-    // set status to status + 1 mod whatever
-    public abstract void nextState();
-    // set status to a random or initial value
-    public abstract void reset(boolean randomly);
+    // Abstract Methods
+    public abstract void observe(); // observe neighbors' states
+    public abstract void interact(); // interact with a random neighbor
+    public abstract void update(); // update my state
+    public abstract void nextState(); // set status to status + 1 mod whatever
+    public abstract void reset(boolean randomly); // set status to a random or initial value
+
+    // From CALab: 'getColor, and getStatus are abstract methods in the Cell class.'
+    public abstract Color getColor();
     public abstract int getStatus();
 
+    // Assumption from Life Lab: getAmbience is needed as a label for CellView
+    public abstract int getAmbience();
+
+    // Hayoun - Added getStatus() & getColor()
+    /*
+    public abstract int getStatus();
     public Color getColor() {
         return color;
     }
+    */
 
 }

@@ -2,17 +2,19 @@ package CALab;
 
 import java.awt.*;
 import java.util.*;
-
+import java.io.*;
 import mvc.*;
 
 public abstract class Grid extends Model {
     static private int time = 0;
     protected int dim = 20;
     protected Cell[][] cells;
+
     public int getDim() { return dim; }
     public int getTime() { return time; }
     public Cell getCell(int row, int col) { return cells[row][col]; }
-    public abstract Cell makeCell();
+    public abstract Cell makeCell(boolean uniform); // no class notes on what bool uniform does
+
     public Grid(int dim) {
         this.dim = dim;
         cells = new Cell[dim][dim];
@@ -22,6 +24,9 @@ public abstract class Grid extends Model {
 
     // Populate() is called when the populate button is clicked
     protected void populate() {
+        // 1. use makeCell to fill in cells
+        // 2. use getNeighbors to set the neighbors field of each cell
+
         // Loop through entire grid cell by cell & populate it
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
@@ -42,28 +47,22 @@ public abstract class Grid extends Model {
 
         // Loop through entire grid cell by cell & set ambience levels
         //      by calling observe()
+        int radius = 1;
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
-
+                // 2. use getNeighbors to set the neighbors field of each cell
+                // int ambience = getNeightbors(cells[i][j])
             }
         }
-
-        // 2. use getNeighbors to set the neighbors field of each cell
-
     }
 
-    // repopulate is called when Populate is ran
-    public void repopulate(boolean randomly, int i, int j) {
-        //should call reset
+    // repopulate is called when the POPULATE or CLEAR buttons are clicked
+    public void repopulate(boolean randomly) {
         if (randomly) {
-            // set the status of each cell to 1 (alive)
-            cells[i][j].setStatus(1);
+            // randomly set the status of the cell to 1 (alive)
+            // cells[i][j].setStatus(1);
         } else {
-            // set the status of each cell to 0 (dead)
-            
-            // ERROR: In order for this to work, we need to attach the cells made in populate()
-            //      to the Grid object. The current error is due to cells in Grid being empty.
-            cells[i][j].setStatus(0);
+            // randomly set the status of the cell to 0 (dead)
         }
         // notify subscribers
     }
@@ -97,9 +96,10 @@ public abstract class Grid extends Model {
         return myNeighbors;
     }
 
-    // overide these
+    // overide these - added by Hayoun
     public int getStatus() { return 0; }
     public Color getColor() { return Color.GREEN; }
+
     // cell phases:
     public void observe() {
         // call each cell's observe method and notify subscribers
@@ -110,6 +110,7 @@ public abstract class Grid extends Model {
         }
         notifySubscribers();
     }
+
     public void interact() {
         for (int i = 0; i < cells.length; i++){
             for (int j = 0; j < cells[i].length;j++){
@@ -124,7 +125,9 @@ public abstract class Grid extends Model {
                 cells[i][j].update();
             }
         }
-        notifySubscribers();    }
+        notifySubscribers();
+    }
+
     public void updateLoop(int cycles) {
         observe();
         for(int cycle = 0; cycle < cycles; cycle++) {

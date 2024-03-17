@@ -3,17 +3,27 @@ package CALab.life;
 import CALab.Cell;
 import CALab.Grid;
 
+import java.awt.*;
+
 public class Agent extends Cell {
-    int ambience;
+    public int ambience; // possibly make private?
+    public int status; // possibly make private?
+
+    // default constructor
+    public Agent() {
+        this.status = 0; // Default status value for an Agent (Cell)
+        this.ambience = 0; // Default ambience value for an Agent (Cell)
+    }
 
     public Agent(Grid grid) {
         super(grid);
-        this.status = 0;
+        this.status = 0; // default status is dead
         this.ambience = 8; //Why 8? Shouldn't it be 0?
     }
 
     @Override
     public void observe() {
+        // get this Cell's neighbors and count it for Ambience
         this.neighbors = myGrid.getNeighbors(this, 1);
         int count = 0;
         for(Cell eachCell : neighbors) {
@@ -62,5 +72,17 @@ public class Agent extends Cell {
     @Override
     public int getStatus() {
         return this.status;
+    }
+
+    @Override
+    public Color getColor() {
+        // return color of the agent based on its status
+        if(status == 1) return Color.green;
+        else return Color.red;
+    }
+
+    @Override
+    public int getAmbience() {
+        return ambience;
     }
 }
