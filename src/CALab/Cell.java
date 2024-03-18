@@ -15,8 +15,9 @@ public abstract class Cell extends Model {
     protected Grid myGrid = null;
     protected Cell partner = null;
 
-    // protected Color color = null; Color is not mentioned as being included in Cell.java
-    // protected int status = 0; Status is not mentioned as being included in Cell.java
+    // Uncommented by Alex
+    protected Color color = null; // Color is not mentioned as being included in Cell.java
+    protected int status = 0; // Status is not mentioned as being included in Cell.java
 
     // Default constructor ! Not needed? 03/18/2024
     public Cell() {
