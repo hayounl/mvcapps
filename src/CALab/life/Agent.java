@@ -6,7 +6,7 @@ import CALab.Grid;
 import java.awt.*;
 
 public class Agent extends Cell {
-    int ambience;
+    public int ambience;
     protected int status = 0;
 
     public Agent(Grid grid, int row, int col) {
@@ -35,7 +35,7 @@ public class Agent extends Cell {
                 count++;
             }
         }
-        ambience = count;
+        this.ambience = count;
     }
 
     @Override
@@ -81,6 +81,10 @@ public class Agent extends Cell {
 
     public Color getColor() {
         return color;
+    }
+
+    public int getAmbience() {
+        return ambience;
     }
 }
 

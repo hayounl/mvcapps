@@ -3,6 +3,7 @@ package CALab;
 import java.awt.*;
 import java.util.*;
 
+import CALab.life.Agent;
 import mvc.*;
 
 public abstract class Grid extends Model {
@@ -97,7 +98,10 @@ public abstract class Grid extends Model {
             update();
             observe();
             time++;
-            System.out.println("time = " + time);
+            //System.out.println("time = " + time);
+            Agent newAgent = (Agent)cells[1][1];
+            System.out.println(newAgent.getAmbience());
+            notifySubscribers();
         }
     }
 }
