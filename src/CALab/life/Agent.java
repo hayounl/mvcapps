@@ -62,6 +62,7 @@ public class Agent extends Cell {
         else {
             this.status = 0;
         }
+        this.update();
     }
 
     @Override

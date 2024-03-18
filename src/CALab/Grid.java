@@ -13,7 +13,7 @@ public abstract class Grid extends Model {
     public int getDim() { return dim; }
     public int getTime() { return time; }
     public Cell getCell(int row, int col) { return cells[row][col]; }
-    public abstract Cell makeCell(boolean uniform); // no class notes on what bool uniform does
+    public abstract Cell makeCell(/*boolean uniform*/); // no class notes on what bool uniform does
 
     public Grid(int dim) {
         this.dim = dim;
@@ -41,7 +41,7 @@ public abstract class Grid extends Model {
                 if(random.nextInt(2) == 1) {
                     randomly = true;
                 }
-                repopulate(randomly, i, j);
+                repopulate(randomly);
             }
         }
 
