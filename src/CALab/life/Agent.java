@@ -15,9 +15,15 @@ public class Agent extends Cell {
         this.ambience = 0; // Default ambience value for an Agent (Cell)
     }
 
+    // Original 03/18/2024
     public Agent(Grid grid) {
         super(grid);
         this.status = 0; // default status is dead
+    }
+    // Added by Alex 03/18/2024
+    public Agent(Grid grid, int row, int col) {
+        super(grid, row, col);
+        this.status = 0;
         this.ambience = 8; //Why 8? Shouldn't it be 0?
     }
 
@@ -45,11 +51,11 @@ public class Agent extends Cell {
             //do nothing lol
         }
         else if(ambience == 3){
-            this.status = 1;
+            this.setStatus(1);
             //rebirth cell
         }
         else {
-            this.status = 0;
+            this.setStatus(0);
             //kills this cell
         }
     }
@@ -57,17 +63,17 @@ public class Agent extends Cell {
     @Override
     public void nextState() {
         if(this.status == 0) {
-            this.status = 1;
+            this.setStatus(1);
         }
         else {
-            this.status = 0;
+            this.setStatus(0);
         }
         this.update();
     }
 
     @Override
     public void reset(boolean randomly) {
-        this.status = 0;
+        this.setStatus(0);
     }
 
     @Override

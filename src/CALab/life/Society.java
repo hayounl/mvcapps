@@ -24,9 +24,15 @@ public class Society extends Grid {
         death.add(7);
         death.add(8);
     }
-    @Override
+    // Original ! Not needed? 03/18/2024
+    /*@Override
     public Cell makeCell() {
         return new Agent(this);
         // maybe do return new Agent();
+    }*/
+    // Added by Alex 03/18/2024
+    @Override
+    public Cell makeCell(int row, int col) {
+        return new Agent(this, row, col);
     }
 }

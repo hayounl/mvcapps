@@ -9,7 +9,8 @@ import mvc.*;
 
 // Hayoun changed from 'extends Publisher implements Serializable' to 'extends Model'
 public abstract class Cell extends Model {
-    protected int row = 0, col = 0;
+    // protected int row = 0, col = 0; Old version
+    protected int row, col; // new 03/18/2024
     protected Set<Cell> neighbors = new HashSet<Cell>();
     protected Grid myGrid = null;
     protected Cell partner = null;
@@ -17,20 +18,39 @@ public abstract class Cell extends Model {
     // protected Color color = null; Color is not mentioned as being included in Cell.java
     // protected int status = 0; Status is not mentioned as being included in Cell.java
 
-    // Default constructor
+    // Default constructor ! Not needed? 03/18/2024
     public Cell() {
         // Constructor
     }
 
-    // Added by Hayoun
+    // Added by Hayoun ! Not needed? 03/18/2024
     public Cell(Grid grid) {
         myGrid = grid;
     }
 
-    // Added by Hayoun
+    // Added by Hayoun ! Not needed 03/18/2024
     /*public void setStatus(int statNumber) {
         status = statNumber;
     }*/
+
+    // Added by Alex 03/18/2024
+    public Cell(Grid grid, int row, int col) {
+        this.row = row;
+        this.col = col;
+        myGrid = grid;
+    }
+
+    // Added by Alex 03/18/2024
+    public void setStatus(int statNumber) {
+        if(statNumber == 1) { //must be a status of 1 or 2
+            status = statNumber;
+            color = Color.green;
+        }
+        else if(statNumber == 0) { //must be a status of 1 or 2
+            status = statNumber;
+            color = Color.red;
+        }
+    }
 
     // choose a random neighbor as a partner
     public void choosePartner() {
@@ -89,7 +109,7 @@ public abstract class Cell extends Model {
     // Assumption from Life Lab: getAmbience is needed as a label for CellView
     public abstract int getAmbience();
 
-    // Hayoun - Added getStatus() & getColor()
+    // Hayoun - Added getStatus() & getColor() Not needed
     /*
     public abstract int getStatus();
     public Color getColor() {
