@@ -24,11 +24,11 @@ public abstract class Cell extends Model {
     }
 
     public void setStatus(int statNumber) {
-        if(status == 1) { //must be a status of 1 or 2
+        if(statNumber == 1) { //must be a status of 1 or 2
             status = statNumber;
             color = Color.green;
         }
-        else if(status == 0) { //must be a status of 1 or 2
+        else if(statNumber == 0) { //must be a status of 1 or 2
             status = statNumber;
             color = Color.red;
         }
