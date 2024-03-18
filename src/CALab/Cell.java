@@ -13,27 +13,13 @@ public abstract class Cell extends Model {
     protected Set<Cell> neighbors = new HashSet<Cell>();
     protected Grid myGrid = null;
     protected Cell partner = null;
-
     protected Color color = null;
-    protected int status = 0;
-
+    //protected int status = 0;
     public Cell(Grid grid, int row, int col) {
         this.row = row;
         this.col = col;
         myGrid = grid;
     }
-
-    public void setStatus(int statNumber) {
-        if(statNumber == 1) { //must be a status of 1 or 2
-            status = statNumber;
-            color = Color.green;
-        }
-        else if(statNumber == 0) { //must be a status of 1 or 2
-            status = statNumber;
-            color = Color.red;
-        }
-    }
-
     // choose a random neighbor as a partner
     public void choosePartner() {
         if (partner == null && neighbors != null) {
@@ -75,7 +61,6 @@ public abstract class Cell extends Model {
             partner = null;
         }
     }
-
     // observer neighbors' states
     public abstract void observe();
     // interact with a random neighbor
@@ -87,9 +72,6 @@ public abstract class Cell extends Model {
     // set status to a random or initial value
     public abstract void reset(boolean randomly);
     public abstract int getStatus();
-
-    public Color getColor() {
-        return color;
-    }
+    public abstract Color getColor();
 
 }

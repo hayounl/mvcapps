@@ -31,23 +31,6 @@ public class CellView extends JButton implements ActionListener, Subscriber {
         update(); // call update needed? No, since CellView is a subscriber of Cell, it will sync to its updates
     }
 
-    // called by notifySubscribers and GridView.update
-    /* public void update(String msg, Object oldState, Object newState) {
-        setBackground(myCell.getColor());
-        setBorder(BorderFactory.createLineBorder(Color.black)); // needed?
-        setText("" + myCell.getStatus());
-    }
-     */
-    // Update the appearance of CellView (JBUtton) based on the associated cell's current status
-    @Override
-    public void update() {
-        setBackground();
-        setText();
-        // setBackground(myCell.getColor());
-        // setBorder(BorderFactory.createLineBorder(Color.black)); not needed. Border never changes after initialization
-        // setText(Integer.toString(myCell.getStatus()));
-    }
-
     public void setBackground() {
         setBackground(myCell.getColor());
     }
@@ -58,6 +41,12 @@ public class CellView extends JButton implements ActionListener, Subscriber {
 
     public void setText() {
         setText(Integer.toString(myCell.getStatus()));
+    }
+
+    @Override
+    public void update() {
+        setBackground();
+        setText();
     }
 }
 

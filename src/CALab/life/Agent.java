@@ -7,11 +7,23 @@ import java.awt.*;
 
 public class Agent extends Cell {
     int ambience;
+    protected int status = 0;
 
     public Agent(Grid grid, int row, int col) {
         super(grid, row, col);
         this.status = 0;
         this.ambience = 8; //Why 8? Shouldn't it be 0?
+    }
+
+    public void setStatus(int statNumber) {
+        if(statNumber == 1) { //must be a status of 1 or 2
+            status = statNumber;
+            color = Color.green;
+        }
+        else if(statNumber == 0) { //must be a status of 1 or 2
+            status = statNumber;
+            color = Color.red;
+        }
     }
 
     @Override
@@ -54,6 +66,7 @@ public class Agent extends Cell {
         else {
             this.setStatus(0);
         }
+        notifySubscribers();
     }
 
     @Override
@@ -65,4 +78,9 @@ public class Agent extends Cell {
     public int getStatus() {
         return this.status;
     }
+
+    public Color getColor() {
+        return color;
+    }
 }
+

@@ -20,61 +20,8 @@ public abstract class Grid extends Model {
     }
     public Grid() { this(20); }
 
-    // Populate() is called when the populate button is clicked
-    protected void populate() {
-        // Loop through entire grid cell by cell & populate it
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[i].length; j++) {
-                // 1. use makeCell to fill in cells
-                Cell newCell = makeCell(j, i);
-                cells[j][i] = newCell;
-                // 1.1 'repopulate' the cell as it is made
-                Random random = new Random();
-                newCell.setStatus(random.nextInt(1));
+    public abstract void populate();
 
-                /*
-                // false = dead | true = alive
-                boolean randomly = false;
-                // 1 = Alive | 0 = Dead
-                if(random.nextInt(2) == 1) {
-                    randomly = true;
-                }
-                repopulate(randomly, j, i);
-
-                 */
-            }
-        }
-
-        // Loop through entire grid cell by cell & set ambience levels
-        //      by calling observe()
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[i].length; j++) {
-                cells[j][i].observe();
-            }
-        }
-
-        // 2. use getNeighbors to set the neighbors field of each cell
-
-    }
-
-    /* Is listed in the directions, but may not be needed
-    // repopulate is called when Populate is ran
-    public void repopulate(boolean randomly, int row, int col) {
-        //should call reset
-        if (randomly) {
-            // set the status of each cell to 1 (alive)
-            cells[row][col].setStatus(1);
-        } else {
-            // set the status of each cell to 0 (dead)
-            
-            // ERROR: In order for this to work, we need to attach the cells made in populate()
-            //      to the Grid object. The current error is due to cells in Grid being empty.
-            cells[row][col].setStatus(0);
-        }
-        // notify subscribers
-    }
-
-     */
     public Set<Cell> getNeighbors(Cell asker, int radius) {
         /*
         return the set of all cells that can be reached from the asker in radius steps.
@@ -141,7 +88,8 @@ public abstract class Grid extends Model {
                 cells[i][j].update();
             }
         }
-        notifySubscribers();    }
+        notifySubscribers();
+    }
     public void updateLoop(int cycles) {
         observe();
         for(int cycle = 0; cycle < cycles; cycle++) {
