@@ -9,7 +9,7 @@ import mvc.*;
 
 public abstract class Cell extends Model {
 
-    protected int row = 0, col = 0;
+    protected int row, col;
     protected Set<Cell> neighbors = new HashSet<Cell>();
     protected Grid myGrid = null;
     protected Cell partner = null;
@@ -17,12 +17,21 @@ public abstract class Cell extends Model {
     protected Color color = null;
     protected int status = 0;
 
-    public Cell(Grid grid) {
+    public Cell(Grid grid, int row, int col) {
+        this.row = row;
+        this.col = col;
         myGrid = grid;
     }
 
     public void setStatus(int statNumber) {
-        status = statNumber;
+        if(status == 1) { //must be a status of 1 or 2
+            status = statNumber;
+            color = Color.green;
+        }
+        else if(status == 0) { //must be a status of 1 or 2
+            status = statNumber;
+            color = Color.red;
+        }
     }
 
     // choose a random neighbor as a partner

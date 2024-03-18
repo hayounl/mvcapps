@@ -26,7 +26,7 @@ public class Society extends Grid {
         death.add(8);
     }
     @Override
-    public Cell makeCell() {
-        return new Agent(this);
+    public Cell makeCell(int row, int col) {
+        return new Agent(this, row, col);
     }
 }

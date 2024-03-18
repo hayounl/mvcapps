@@ -12,7 +12,7 @@ public abstract class Grid extends Model {
     public int getDim() { return dim; }
     public int getTime() { return time; }
     public Cell getCell(int row, int col) { return cells[row][col]; }
-    public abstract Cell makeCell();
+    public abstract Cell makeCell(int row, int col);
     public Grid(int dim) {
         this.dim = dim;
         cells = new Cell[dim][dim];
@@ -26,17 +26,22 @@ public abstract class Grid extends Model {
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
                 // 1. use makeCell to fill in cells
-                makeCell();
-
+                Cell newCell = makeCell(j, i);
+                cells[j][i] = newCell;
                 // 1.1 'repopulate' the cell as it is made
                 Random random = new Random();
+                newCell.setStatus(random.nextInt(1));
+
+                /*
                 // false = dead | true = alive
                 boolean randomly = false;
                 // 1 = Alive | 0 = Dead
                 if(random.nextInt(2) == 1) {
                     randomly = true;
                 }
-                repopulate(randomly, i, j);
+                repopulate(randomly, j, i);
+
+                 */
             }
         }
 
@@ -44,7 +49,7 @@ public abstract class Grid extends Model {
         //      by calling observe()
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
-
+                cells[j][i].observe();
             }
         }
 
@@ -52,21 +57,24 @@ public abstract class Grid extends Model {
 
     }
 
+    /* Is listed in the directions, but may not be needed
     // repopulate is called when Populate is ran
-    public void repopulate(boolean randomly, int i, int j) {
+    public void repopulate(boolean randomly, int row, int col) {
         //should call reset
         if (randomly) {
             // set the status of each cell to 1 (alive)
-            cells[i][j].setStatus(1);
+            cells[row][col].setStatus(1);
         } else {
             // set the status of each cell to 0 (dead)
             
             // ERROR: In order for this to work, we need to attach the cells made in populate()
             //      to the Grid object. The current error is due to cells in Grid being empty.
-            cells[i][j].setStatus(0);
+            cells[row][col].setStatus(0);
         }
         // notify subscribers
     }
+
+     */
     public Set<Cell> getNeighbors(Cell asker, int radius) {
         /*
         return the set of all cells that can be reached from the asker in radius steps.
@@ -78,10 +86,19 @@ public abstract class Grid extends Model {
         int row = asker.row;
         int col = asker.col;
         int n = dim -1;
-        int top = (row-1)%dim;
-        int below = (row+1)%dim;
-        int left = (col-1)%dim;
-        int right = (col+1)%dim;
+        int top, below, left, right;
+        if(row == 0) {
+            top = n;
+        } else {
+            top = (row-1)%n;
+        }
+        below = (row+1)%n;
+        if(col == 0) {
+            left = n;
+        } else {
+            left = (col-1)%n;
+        }
+        right = (col+1)%n;
         //row above
         myNeighbors.add(cells[top][left]);
         myNeighbors.add(cells[top][col]);
