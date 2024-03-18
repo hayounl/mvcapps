@@ -3,11 +3,13 @@ package CALab.life;
 import CALab.Cell;
 import CALab.Grid;
 
+import java.awt.*;
+
 public class Agent extends Cell {
     int ambience;
 
-    public Agent(Grid grid) {
-        super(grid);
+    public Agent(Grid grid, int row, int col) {
+        super(grid, row, col);
         this.status = 0;
         this.ambience = 8; //Why 8? Shouldn't it be 0?
     }
@@ -35,11 +37,11 @@ public class Agent extends Cell {
             //do nothing lol
         }
         else if(ambience == 3){
-            this.status = 1;
+            this.setStatus(1);
             //rebirth cell
         }
         else {
-            this.status = 0;
+            this.setStatus(0);
             //kills this cell
         }
     }
@@ -47,16 +49,16 @@ public class Agent extends Cell {
     @Override
     public void nextState() {
         if(this.status == 0) {
-            this.status = 1;
+            this.setStatus(1);
         }
         else {
-            this.status = 0;
+            this.setStatus(0);
         }
     }
 
     @Override
     public void reset(boolean randomly) {
-        this.status = 0;
+        this.setStatus(0);
     }
 
     @Override
