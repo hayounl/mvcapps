@@ -54,7 +54,6 @@ public abstract class Cell extends Model {
 
         }
     }
-
     public void unpartner() {
         if (partner != null) {
             if (partner.partner != null) {
@@ -63,7 +62,6 @@ public abstract class Cell extends Model {
             partner = null;
         }
     }
-
     // observer neighbors' states
     public abstract void observe();
     // interact with a random neighbor
@@ -74,10 +72,8 @@ public abstract class Cell extends Model {
     public abstract void nextState();
     // set status to a random or initial value
     public abstract void reset(boolean randomly);
-
     public abstract int getStatus();
     public abstract void setStatus(int i);
     public abstract Color getColor();
-
     public abstract int getAmbience();
 }

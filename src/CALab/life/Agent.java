@@ -26,7 +26,6 @@ public class Agent extends Cell {
             color = Color.red;
         }
     }
-
     @Override
     public void observe() {
         // get this Cell's neighbors and count it for Ambience
@@ -39,11 +38,9 @@ public class Agent extends Cell {
         }
         this.ambience = count;
     }
-
     @Override
     public void interact() { //do nothing
     }
-
     @Override
     public void update() {
         if(ambience == 2) { //do nothing lol
@@ -57,7 +54,6 @@ public class Agent extends Cell {
             notifySubscribers();
         }
     }
-
     @Override
     public void nextState() {
         if(this.status == 0) {
@@ -68,21 +64,17 @@ public class Agent extends Cell {
         }
         notifySubscribers();
     }
-
     @Override
     public void reset(boolean randomly) {
         this.setStatus(0);
     }
-
     @Override
     public int getStatus() {
         return this.status;
     }
-
     public Color getColor() {
         return color;
     }
-
     @Override
     public int getAmbience() {
         return ambience;

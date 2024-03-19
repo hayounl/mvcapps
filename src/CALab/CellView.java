@@ -7,7 +7,6 @@ import mvc.*;
 
 public class CellView extends JButton implements ActionListener, Subscriber {
     private Cell myCell;
-
     public CellView(Cell c) {
         myCell = c;
         if (c != null) {
@@ -19,9 +18,7 @@ public class CellView extends JButton implements ActionListener, Subscriber {
         setBorder();
         setText("0");
     }
-
     public CellView() { this(null); }
-
     // Change the state of the associated Cell when the CellView JButton is clicked
    @Override
     public void actionPerformed(ActionEvent e) {

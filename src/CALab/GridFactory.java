@@ -2,8 +2,8 @@ package CALab;
 
 import mvc.*;
 
-public class GridFactory implements AppFactory {
-    public Model makeModel() {return new CALab.life.Society(20);}
+public abstract class GridFactory implements AppFactory {
+    public abstract Model makeModel();
     public View makeView(Model m){return new GridView((Grid)m);}
     public String[] getEditCommands() { return new String[] {"Run1", "Run50", "Populate", "Clear"}; }
     public Command makeEditCommand(Model model, String type) {
