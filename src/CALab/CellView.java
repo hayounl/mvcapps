@@ -14,8 +14,7 @@ public class CellView extends JButton implements ActionListener, Subscriber {
             c.subscribe(this); // Make the instance of CellView subscribe to the notifications of the Cell
         }
         this.addActionListener(this);
-        update(); // we have to update the appearance of CellView when it is initialized!
-        // Initialize the appearance of the CellView using the Cell's current status
+        //update();
         setBackground(Color.RED);
         setBorder();
         setText("0");
@@ -27,9 +26,8 @@ public class CellView extends JButton implements ActionListener, Subscriber {
    @Override
     public void actionPerformed(ActionEvent e) {
         myCell.nextState();
-        update(); // call update needed? No, since CellView is a subscriber of Cell, it will sync to its updates
+        // update();
     }
-
     public void setBackground() {
         setBackground(myCell.getColor());
     }
@@ -42,7 +40,6 @@ public class CellView extends JButton implements ActionListener, Subscriber {
     public void setAmbience() {
         setText(Integer.toString(myCell.getAmbience()));
     }
-
     @Override
     public void update() {
         setBackground();
