@@ -13,15 +13,15 @@ public class Agent extends Cell {
         super(grid, row, col);
         this.status = 0;
         this.color = Color.red;
-        this.ambience = 0; //Why 8? Shouldn't it be 0?
+        this.ambience = 0;
     }
 
     public void setStatus(int statNumber) {
-        if(statNumber == 1) { //must be a status of 1 or 2
+        if(statNumber == 1) {
             status = statNumber;
             color = Color.green;
         }
-        else if(statNumber == 0) { //must be a status of 1 or 2
+        else if(statNumber == 0) {
             status = statNumber;
             color = Color.red;
         }
@@ -29,6 +29,7 @@ public class Agent extends Cell {
 
     @Override
     public void observe() {
+        // get this Cell's neighbors and count it for Ambience
         this.neighbors = myGrid.getNeighbors(this, 1);
         int count = 0;
         for(Cell eachCell : neighbors) {
@@ -40,24 +41,20 @@ public class Agent extends Cell {
     }
 
     @Override
-    public void interact() {
-        //do nothing
+    public void interact() { //do nothing
     }
 
     @Override
     public void update() {
-        if(ambience == 2) {
-            //do nothing lol
+        if(ambience == 2) { //do nothing lol
         }
-        else if(ambience == 3){
+        else if(ambience == 3){ //rebirth cell
             this.setStatus(1);
             notifySubscribers();
-            //rebirth cell
         }
-        else {
+        else { //kills this cell
             this.setStatus(0);
             notifySubscribers();
-            //kills this cell
         }
     }
 
@@ -86,6 +83,7 @@ public class Agent extends Cell {
         return color;
     }
 
+    @Override
     public int getAmbience() {
         return ambience;
     }
