@@ -41,24 +41,21 @@ public class Agent extends Cell {
     }
 
     @Override
-    public void interact() {
-        //do nothing
+    public void interact() { //do nothing
     }
 
     @Override
     public void update() {
-        if(ambience == 2) {
-            //do nothing lol
+        if(ambience == 2) { //do nothing lol
         }
-        else if(ambience == 3){
+        else if(ambience == 3){ //rebirth cell
             this.setStatus(1);
-            //rebirth cell
+            notifySubscribers();
         }
-        else {
+        else { //kills this cell
             this.setStatus(0);
-            //kills this cell
+            notifySubscribers();
         }
-        notifySubscribers();
     }
 
     @Override

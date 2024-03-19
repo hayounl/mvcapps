@@ -20,20 +20,26 @@ public abstract class Grid extends Model {
     public Grid(int dim) {
         this.dim = dim;
         cells = new Cell[dim][dim];
-        populate();
+        // Removed in Alex's version: populate();
+        populate(false);
     }
     public Grid() { this(20); }
 
-    public void populate() {
+    // Removed in Alex's version: public void populate() {
+    public void populate(boolean initialized) {
         //Loop through entire grid cell by cell & populate it
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[i].length; j++) {
-                // 1. use makeCell to fill in cells
-                cells[i][j] = makeCell(i, j);
+        if(!initialized) {
+            for (int i = 0; i < cells.length; i++) {
+                for (int j = 0; j < cells[i].length; j++) {
+                    // 1. use makeCell to fill in cells
+                    cells[i][j] = makeCell(i, j);
+                }
             }
         }
-        // Call repopulate to set the status of each cell
-        repopulate(true);
+        else {
+            // Call repopulate to set the status of each cell
+            repopulate(true);
+        }
         // Loop through entire grid cell by cell & set ambience levels by calling observe()
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
@@ -55,8 +61,8 @@ public abstract class Grid extends Model {
             for (int i = 0; i < cells.length; i++) {
                 for (int j = 0; j < cells[i].length; j++) {
                     Cell newCell = cells[i][j];
-                    Agent agent = (Agent) newCell;
-                    agent.setStatus(random.nextInt(2));
+                    Agent agentCell = (Agent) newCell;
+                    agentCell.setStatus(random.nextInt(2));
                 }
             }
         } else {
@@ -64,8 +70,8 @@ public abstract class Grid extends Model {
             for (int i = 0; i < cells.length; i++) {
                 for (int j = 0; j < cells[i].length; j++) {
                     Cell newCell = cells[i][j];
-                    Agent agent = (Agent) newCell;
-                    agent.setStatus(0);
+                    Agent agentCell = (Agent) newCell;
+                    agentCell.setStatus(0);
                 }
             }
         }
