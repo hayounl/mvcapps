@@ -7,7 +7,6 @@ import java.util.Random;
 import java.util.Set;
 
 public class Society extends Grid {
-
     public static int percentAlive = 50;
     public static Set<Integer> rebirth = new HashSet<Integer>();
     public static Set<Integer> death = new HashSet<Integer>();
@@ -27,7 +26,8 @@ public class Society extends Grid {
         death.add(8);
     }
 
-    public void populate(boolean initialized) {
+    /*
+    public void populate() {
         //Loop through entire grid cell by cell & populate it
         if(!initialized) {
             for (int i = 0; i < cells.length; i++) {
@@ -61,6 +61,7 @@ public class Society extends Grid {
         }
         notifySubscribers();
     }
+    */
     @Override
     public Agent makeCell(int row, int col) {
         return new Agent(this, row, col);

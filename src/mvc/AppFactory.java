@@ -6,6 +6,7 @@ public interface AppFactory {
     //public default AppPanel makeAppPanel (){
     //    return new AppPanel();
     //}
+
     default Model makeModel(){
         return new Model();
     }

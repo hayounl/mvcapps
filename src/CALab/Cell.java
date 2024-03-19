@@ -7,9 +7,10 @@ import java.util.Random;
 
 import mvc.*;
 
+// Hayoun changed from 'extends Publisher implements Serializable' to 'extends Model'
 public abstract class Cell extends Model {
-
-    protected int row, col;
+    // protected int row = 0, col = 0; Old version
+    protected int row, col; // new 03/18/2024
     protected Set<Cell> neighbors = new HashSet<Cell>();
     protected Grid myGrid = null;
     protected Cell partner = null;
@@ -53,6 +54,7 @@ public abstract class Cell extends Model {
 
         }
     }
+
     public void unpartner() {
         if (partner != null) {
             if (partner.partner != null) {
@@ -61,6 +63,7 @@ public abstract class Cell extends Model {
             partner = null;
         }
     }
+
     // observer neighbors' states
     public abstract void observe();
     // interact with a random neighbor
@@ -71,7 +74,9 @@ public abstract class Cell extends Model {
     public abstract void nextState();
     // set status to a random or initial value
     public abstract void reset(boolean randomly);
+
     public abstract int getStatus();
     public abstract Color getColor();
 
+    public abstract int getAmbience();
 }
