@@ -14,45 +14,13 @@ public abstract class Cell extends Model {
     protected Set<Cell> neighbors = new HashSet<Cell>();
     protected Grid myGrid = null;
     protected Cell partner = null;
-
-    // Uncommented by Alex
-    protected Color color = null; // Color is not mentioned as being included in Cell.java
-    protected int status = 0; // Status is not mentioned as being included in Cell.java
-
-    // Default constructor ! Not needed? 03/18/2024
-    public Cell() {
-        // Constructor
-    }
-
-    // Added by Hayoun ! Not needed? 03/18/2024
-    public Cell(Grid grid) {
-        myGrid = grid;
-    }
-
-    // Added by Hayoun ! Not needed 03/18/2024
-    /*public void setStatus(int statNumber) {
-        status = statNumber;
-    }*/
-
-    // Added by Alex 03/18/2024
+    protected Color color = null;
+    //protected int status = 0;
     public Cell(Grid grid, int row, int col) {
         this.row = row;
         this.col = col;
         myGrid = grid;
     }
-
-    // Added by Alex 03/18/2024
-    public void setStatus(int statNumber) {
-        if(statNumber == 1) { //must be a status of 1 or 2
-            status = statNumber;
-            color = Color.green;
-        }
-        else if(statNumber == 0) { //must be a status of 1 or 2
-            status = statNumber;
-            color = Color.red;
-        }
-    }
-
     // choose a random neighbor as a partner
     public void choosePartner() {
         if (partner == null && neighbors != null) {
@@ -96,26 +64,19 @@ public abstract class Cell extends Model {
         }
     }
 
-    // Abstract Methods
-    public abstract void observe(); // observe neighbors' states
-    public abstract void interact(); // interact with a random neighbor
-    public abstract void update(); // update my state
-    public abstract void nextState(); // set status to status + 1 mod whatever
-    public abstract void reset(boolean randomly); // set status to a random or initial value
+    // observer neighbors' states
+    public abstract void observe();
+    // interact with a random neighbor
+    public abstract void interact();
+    // update my state
+    public abstract void update();
+    // set status to status + 1 mod whatever
+    public abstract void nextState();
+    // set status to a random or initial value
+    public abstract void reset(boolean randomly);
 
-    // From CALab: 'getColor, and getStatus are abstract methods in the Cell class.'
+    public abstract int getStatus();
     public abstract Color getColor();
-    public abstract int getStatus();
 
-    // Assumption from Life Lab: getAmbience is needed as a label for CellView
     public abstract int getAmbience();
-
-    // Hayoun - Added getStatus() & getColor() Not needed
-    /*
-    public abstract int getStatus();
-    public Color getColor() {
-        return color;
-    }
-    */
-
 }

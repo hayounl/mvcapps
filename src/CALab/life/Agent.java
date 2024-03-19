@@ -6,25 +6,25 @@ import CALab.Grid;
 import java.awt.*;
 
 public class Agent extends Cell {
-    public int ambience; // possibly make private?
-    public int status; // possibly make private?
+    public int ambience;
+    protected int status = 0;
 
-    // default constructor
-    public Agent() {
-        this.status = 0; // Default status value for an Agent (Cell)
-        this.ambience = 0; // Default ambience value for an Agent (Cell)
-    }
-
-    // Original 03/18/2024
-    public Agent(Grid grid) {
-        super(grid);
-        this.status = 0; // default status is dead
-    }
     // Added by Alex 03/18/2024
     public Agent(Grid grid, int row, int col) {
         super(grid, row, col);
         this.status = 0;
-        this.ambience = 8; //Why 8? Shouldn't it be 0?
+        this.ambience = 0; //Why 8? Shouldn't it be 0?
+    }
+
+    public void setStatus(int statNumber) {
+        if(statNumber == 1) { //must be a status of 1 or 2
+            status = statNumber;
+            color = Color.green;
+        }
+        else if(statNumber == 0) { //must be a status of 1 or 2
+            status = statNumber;
+            color = Color.red;
+        }
     }
 
     @Override
@@ -37,7 +37,7 @@ public class Agent extends Cell {
                 count++;
             }
         }
-        ambience = count;
+        this.ambience = count;
     }
 
     @Override
@@ -58,6 +58,7 @@ public class Agent extends Cell {
             this.setStatus(0);
             //kills this cell
         }
+        notifySubscribers();
     }
 
     @Override
@@ -68,7 +69,7 @@ public class Agent extends Cell {
         else {
             this.setStatus(0);
         }
-        this.update();
+        notifySubscribers();
     }
 
     @Override
@@ -81,11 +82,8 @@ public class Agent extends Cell {
         return this.status;
     }
 
-    @Override
     public Color getColor() {
-        // return color of the agent based on its status
-        if(status == 1) return Color.green;
-        else return Color.red;
+        return color;
     }
 
     @Override
@@ -93,3 +91,4 @@ public class Agent extends Cell {
         return ambience;
     }
 }
+

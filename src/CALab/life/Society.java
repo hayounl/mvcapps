@@ -3,6 +3,7 @@ package CALab.life;
 import CALab.Cell;
 import CALab.Grid;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 public class Society extends Grid {
@@ -24,15 +25,32 @@ public class Society extends Grid {
         death.add(7);
         death.add(8);
     }
-    // Original ! Not needed? 03/18/2024
-    /*@Override
-    public Cell makeCell() {
-        return new Agent(this);
-        // maybe do return new Agent();
-    }*/
-    // Added by Alex 03/18/2024
+
+    /*
+    public void populate() {
+        //Loop through entire grid cell by cell & populate it
+        Random random = new Random();
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                // 1. use makeCell to fill in cells
+                Agent newCell = makeCell(j, i);
+                cells[j][i] = newCell;
+                // 1.1 'repopulate' the cell as it is made
+                newCell.setStatus(random.nextInt(2));
+            }
+        }
+        // Loop through entire grid cell by cell & set ambience levels
+        //      by calling observe()
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                cells[j][i].observe();
+            }
+        }
+        notifySubscribers();
+    }
+    */
     @Override
-    public Cell makeCell(int row, int col) {
+    public Agent makeCell(int row, int col) {
         return new Agent(this, row, col);
     }
 }
