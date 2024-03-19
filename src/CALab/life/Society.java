@@ -27,6 +27,7 @@ public class Society extends Grid {
         death.add(8);
     }
 
+    /*
     public void populate() {
         //Loop through entire grid cell by cell & populate it
         Random random = new Random();
@@ -48,6 +49,7 @@ public class Society extends Grid {
         }
         notifySubscribers();
     }
+    */
     @Override
     public Agent makeCell(int row, int col) {
         return new Agent(this, row, col);

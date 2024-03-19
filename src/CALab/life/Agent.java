@@ -12,7 +12,7 @@ public class Agent extends Cell {
     public Agent(Grid grid, int row, int col) {
         super(grid, row, col);
         this.status = 0;
-        this.ambience = 8; //Why 8? Shouldn't it be 0?
+        this.ambience = 0; //Why 8? Shouldn't it be 0?
     }
 
     public void setStatus(int statNumber) {
@@ -56,6 +56,7 @@ public class Agent extends Cell {
             this.setStatus(0);
             //kills this cell
         }
+        notifySubscribers();
     }
 
     @Override
@@ -83,6 +84,7 @@ public class Agent extends Cell {
         return color;
     }
 
+    @Override
     public int getAmbience() {
         return ambience;
     }

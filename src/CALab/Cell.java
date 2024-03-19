@@ -74,4 +74,5 @@ public abstract class Cell extends Model {
     public abstract int getStatus();
     public abstract Color getColor();
 
+    public abstract int getAmbience();
 }

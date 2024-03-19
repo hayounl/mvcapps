@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.*;
 import mvc.*;
 
-
 public class CellView extends JButton implements ActionListener, Subscriber {
     private Cell myCell;
 
@@ -15,7 +14,7 @@ public class CellView extends JButton implements ActionListener, Subscriber {
             c.subscribe(this); // Make the instance of CellView subscribe to the notifications of the Cell
         }
         this.addActionListener(this);
-        // update(); // we have to update the appearance of CellView when it is initialized!
+        update(); // we have to update the appearance of CellView when it is initialized!
         // Initialize the appearance of the CellView using the Cell's current status
         setBackground(Color.RED);
         setBorder();
@@ -34,29 +33,19 @@ public class CellView extends JButton implements ActionListener, Subscriber {
     public void setBackground() {
         setBackground(myCell.getColor());
     }
-
     public void setBorder() {
         setBorder(BorderFactory.createLineBorder(Color.black));
     }
-
     public void setText() {
         setText(Integer.toString(myCell.getStatus()));
+    }
+    public void setAmbience() {
+        setText(Integer.toString(myCell.getAmbience()));
     }
 
     @Override
     public void update() {
         setBackground();
-        setText();
+        setAmbience();
     }
 }
-
-/*
-Some other files needed:
-
-   GridFactory.java
-   GridPanel.java
-   ClearCommand.java
-   RunCommand.java   // for Run1 and Run50 buttons
-   PopulateCommand.java
-
-*/
