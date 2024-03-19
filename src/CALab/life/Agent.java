@@ -9,19 +9,18 @@ public class Agent extends Cell {
     public int ambience;
     protected int status = 0;
 
-    // Added by Alex 03/18/2024
     public Agent(Grid grid, int row, int col) {
         super(grid, row, col);
         this.status = 0;
-        this.ambience = 0; //Why 8? Shouldn't it be 0?
+        this.ambience = 0;
     }
 
     public void setStatus(int statNumber) {
-        if(statNumber == 1) { //must be a status of 1 or 2
+        if(statNumber == 1) {
             status = statNumber;
             color = Color.green;
         }
-        else if(statNumber == 0) { //must be a status of 1 or 2
+        else if(statNumber == 0) {
             status = statNumber;
             color = Color.red;
         }

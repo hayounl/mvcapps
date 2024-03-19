@@ -18,7 +18,10 @@ public class GridFactory implements AppFactory {
     }
     public String getTitle() {return "CALab";}
     public String[] getHelp() {
-        return new String[] {"put explanation of buttons here"};
+        return new String[] {"'Run1' will perform one complete updateLoop() cycle." +
+                "\n'Run50' will perform 50 complete updateLoop() cycles." +
+                "\n'Populate' will randomly set the state of each cell." +
+                "\n'Clear' will clear the entire grid of cells. Setting each cell state to 0 (dead)."};
     }
     public String about() {
         return "CALab version 1.0. SJSU 2024 Team 4";
