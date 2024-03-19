@@ -64,7 +64,6 @@ public abstract class Grid extends Model {
 
     // overide these
     public int getStatus() { return 0; }
-    public Color getColor() { return Color.GREEN; }
     // cell phases:
     public void observe() {
         // call each cell's observe method and notify subscribers

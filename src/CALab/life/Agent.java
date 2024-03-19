@@ -12,6 +12,7 @@ public class Agent extends Cell {
     public Agent(Grid grid, int row, int col) {
         super(grid, row, col);
         this.status = 0;
+        this.color = Color.red;
         this.ambience = 0; //Why 8? Shouldn't it be 0?
     }
 

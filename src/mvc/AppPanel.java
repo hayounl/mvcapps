@@ -21,7 +21,7 @@ public class AppPanel extends JPanel implements ActionListener, Subscriber {
         model = factory.makeModel();
         controlPanel = new JPanel();
         view = factory.makeView(model);
-        view.setBackground(Color.GRAY);
+        //view.setBackground(Color.GRAY);
         controlPanel.setBackground(Color.PINK);
         this.setLayout(new GridLayout(1, 2));
         this.add(controlPanel, BorderLayout.CENTER);
@@ -127,6 +127,7 @@ public class AppPanel extends JPanel implements ActionListener, Subscriber {
         // view must also unsubscribe then resubscribe:
         view.setModel(this.model);
         model.changed();
+
     }
     public Model getModel() { return model; }
 

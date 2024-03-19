@@ -85,8 +85,10 @@ public class GridView extends View {
                 CellView cellView = new CellView(cell); // Associate the Cell object with CellView instance
                 cellViews[i][j] = cellView; // Assign CellView instance to the CellView 2D array
                 add(cellView); // Add CellView instance to GridView for display
+                cellView.update();
             }
         }
+        repaint();
     }
 
     // Added in version 2 to follow professor's partial implementation of GridView
@@ -97,6 +99,7 @@ public class GridView extends View {
                 cellView.update(); // Call the update method of each CellView
             }
         }
+        repaint();
     }
 
     /*class TileView extends JLabel {
