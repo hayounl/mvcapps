@@ -81,6 +81,7 @@ public class GridView extends View {
         for (int i = 0; i < gridDim; i++) {
             for (int j = 0; j < gridDim; j++) {
                 Cell cell = grid.getCell(i, j); // get Cell obj at this pos in the grid
+                cell.subscribe(this);
                 CellView cellView = new CellView(cell); // Associate the Cell object with CellView instance
                 cellViews[i][j] = cellView; // Assign CellView instance to the CellView 2D array
                 add(cellView); // Add CellView instance to GridView for display

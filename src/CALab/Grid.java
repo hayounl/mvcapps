@@ -17,11 +17,11 @@ public abstract class Grid extends Model {
     public Grid(int dim) {
         this.dim = dim;
         cells = new Cell[dim][dim];
-        populate();
+        populate(false);
     }
     public Grid() { this(20); }
 
-    public abstract void populate();
+    public abstract void populate(boolean initialized);
 
     public Set<Cell> getNeighbors(Cell asker, int radius) {
         /*

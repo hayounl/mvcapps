@@ -27,16 +27,29 @@ public class Society extends Grid {
         death.add(8);
     }
 
-    public void populate() {
+    public void populate(boolean initialized) {
         //Loop through entire grid cell by cell & populate it
+        if(!initialized) {
+            for (int i = 0; i < cells.length; i++) {
+                for (int j = 0; j < cells[i].length; j++) {
+                    // 1. use makeCell to fill in cells
+                    Agent newCell = makeCell(j, i);
+                    cells[j][i] = newCell;
+                }
+            }
+        }
+        else {
+            repopulate();
+        }
+    }
+
+    public void repopulate(){
+        //loop through grid and give each cell a random status
         Random random = new Random();
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
-                // 1. use makeCell to fill in cells
-                Agent newCell = makeCell(j, i);
-                cells[j][i] = newCell;
-                // 1.1 'repopulate' the cell as it is made
-                newCell.setStatus(random.nextInt(2));
+                Agent agentCell = (Agent)cells[j][i];
+                agentCell.setStatus(random.nextInt(2));
             }
         }
         // Loop through entire grid cell by cell & set ambience levels

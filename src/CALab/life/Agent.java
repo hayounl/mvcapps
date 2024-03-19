@@ -12,7 +12,7 @@ public class Agent extends Cell {
     public Agent(Grid grid, int row, int col) {
         super(grid, row, col);
         this.status = 0;
-        this.ambience = 8; //Why 8? Shouldn't it be 0?
+        this.ambience = 0; //Why 8? Shouldn't it be 0?
     }
 
     public void setStatus(int statNumber) {
@@ -50,10 +50,12 @@ public class Agent extends Cell {
         }
         else if(ambience == 3){
             this.setStatus(1);
+            notifySubscribers();
             //rebirth cell
         }
         else {
             this.setStatus(0);
+            notifySubscribers();
             //kills this cell
         }
     }
