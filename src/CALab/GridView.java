@@ -22,6 +22,22 @@ public class GridView extends View {
 
         initializeCellViews(dim);
     }
+    public void setModel(Model model){
+        grid.unsubscribe(this);
+        grid = (Grid)model;
+        this.model = grid;
+        grid.subscribe(this);
+        initializeCellViews(grid.dim);
+    }
+    public void paintComponent(Graphics gc){
+        super.paintComponent(gc);
+        Grid grid = (Grid)model;
+        for (int i = 0; i < grid.getDim(); i++) {
+            for (int j = 0; j < grid.getDim(); j++) {
+                cellViews[i][j].update();
+            }
+        }
+    }
     private void initializeCellViews(int gridDim) {
         for (int i = 0; i < gridDim; i++) {
             for (int j = 0; j < gridDim; j++) {
