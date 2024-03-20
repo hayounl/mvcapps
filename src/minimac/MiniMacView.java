@@ -9,7 +9,6 @@ public class MiniMacView extends JPanel implements Subscriber {
     private MiniMac mac;
     static DefaultListModel<String> memoryListModel = new DefaultListModel<String>();
     private JList<String> memList = new JList<String>(memoryListModel);
-
     private JScrollPane scrollPane;
 
     public MiniMacView(MiniMac mac) {

@@ -13,7 +13,6 @@ public class CellView extends JButton implements ActionListener, Subscriber {
             c.subscribe(this); // Make the instance of CellView subscribe to the notifications of the Cell
         }
         this.addActionListener(this);
-        //update();
         setBackground(Color.RED);
         setBorder();
         setText("0");
