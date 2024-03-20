@@ -1,8 +1,6 @@
 package CALab;
 
-import java.awt.*;
 import java.util.*;
-import java.io.*;
 import CALab.life.Agent;
 import mvc.*;
 
@@ -20,7 +18,11 @@ public abstract class Grid extends Model {
     public Grid(int dim) {
         this.dim = dim;
         cells = new Cell[dim][dim];
+<<<<<<< HEAD
 
+=======
+        // Removed in Alex's version: populate();
+>>>>>>> main
         populate(false);
     }
     public Grid() { this(20); }
@@ -130,8 +132,11 @@ public abstract class Grid extends Model {
         return myNeighbors;
     }
 
+<<<<<<< HEAD
     // overide these
     public int getStatus() { return 0; }
+=======
+>>>>>>> main
     // cell phases:
     public void observe() {
         // call each cell's observe method and notify subscribers

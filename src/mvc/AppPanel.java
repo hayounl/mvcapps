@@ -21,7 +21,6 @@ public class AppPanel extends JPanel implements ActionListener, Subscriber {
         model = factory.makeModel();
         controlPanel = new JPanel();
         view = factory.makeView(model);
-        //view.setBackground(Color.GRAY);
         controlPanel.setBackground(Color.PINK);
         this.setLayout(new GridLayout(1, 2));
         this.add(controlPanel, BorderLayout.CENTER);
@@ -30,16 +29,11 @@ public class AppPanel extends JPanel implements ActionListener, Subscriber {
         model.subscribe(this);
 
         frame = new SafeFrame();
-        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container cp = frame.getContentPane();
         cp.add(this);
         frame.setJMenuBar(this.createMenuBar());
-        //frame.setTitle(model.fileName);
         frame.setTitle(factory.getTitle());
-        //frame.setSize(500, 500);
         frame.setSize(FRAME_WIDTH,FRAME_HEIGHT);
-        //frame.setMinimumSize(new Dimension(400, 250));
-        //frame.setVisible(true);
 
     }
     public void display() {frame.setVisible(true);}
@@ -73,15 +67,17 @@ public class AppPanel extends JPanel implements ActionListener, Subscriber {
                 switch (cmd) {
                     case "Save": {
                         Utilities.save(model, false);
+                        System.out.println("save");
                         break;
                     }
                     case "SaveAs": {
                         Utilities.save(model, true);
+                        System.out.println("saveas");
                         break;
                     }
 
                     case "Open": {
-
+                        System.out.println("open");
                         Model newModel = Utilities.open(model);
                         if (newModel != null) setModel(newModel);
                         break;
@@ -90,7 +86,6 @@ public class AppPanel extends JPanel implements ActionListener, Subscriber {
                     case "New": {
                         Utilities.saveChanges(model);
                         setModel(factory.makeModel());
-                        // needed cuz setModel sets to true:
                         model.setUnsavedChanges(false);
                         break;
                     }
