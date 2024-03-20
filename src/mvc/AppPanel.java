@@ -67,17 +67,14 @@ public class AppPanel extends JPanel implements ActionListener, Subscriber {
                 switch (cmd) {
                     case "Save": {
                         Utilities.save(model, false);
-                        System.out.println("save");
                         break;
                     }
                     case "SaveAs": {
                         Utilities.save(model, true);
-                        System.out.println("saveas");
                         break;
                     }
 
                     case "Open": {
-                        System.out.println("open");
                         Model newModel = Utilities.open(model);
                         if (newModel != null) setModel(newModel);
                         break;

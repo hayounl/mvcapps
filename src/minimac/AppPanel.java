@@ -90,7 +90,6 @@ public class AppPanel extends JPanel implements ActionListener {
 
                 case "Clear":
                     mac.clear();
-                    System.out.println("clear");
                     break;
 
                 case "Save": {

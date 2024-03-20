@@ -47,7 +47,6 @@ public abstract class Grid extends Model {
     }
     public void clear() {
         repopulate(false);
-        System.out.println("Called Repopulate(false)!");
     }
     // Can be called by Populate OR Clear
     //      randomly = True means we are repopulating randomly
@@ -161,11 +160,8 @@ public abstract class Grid extends Model {
             update();
             observe();
             time++;
-            System.out.println("time = " + time);
             Agent newAgent = (Agent)cells[1][1];
             notifySubscribers();
-
-            System.out.println(newAgent.getAmbience());
         }
     }
 }
