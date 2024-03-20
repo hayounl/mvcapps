@@ -37,6 +37,7 @@ public class Society extends Grid {
                     cells[j][i] = newCell;
                 }
             }
+            notifySubscribers();
         }
         else {
             repopulate();

@@ -45,6 +45,7 @@ public class CellView extends JButton implements ActionListener, Subscriber {
 
     @Override
     public void update() {
+        setOpaque(true);
         setBackground();
         setAmbience();
     }

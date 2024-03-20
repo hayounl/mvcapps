@@ -30,8 +30,10 @@ public class GridView extends View {
                 CellView cellView = new CellView(cell); // Associate the Cell object with CellView instance
                 cellViews[i][j] = cellView; // Assign CellView instance to the CellView 2D array
                 add(cellView); // Add CellView instance to GridView for display
+                cellView.update();
             }
         }
+        repaint();
     }
     public void update() {
         for (int i = 0; i < grid.getDim(); i++) {
@@ -40,5 +42,6 @@ public class GridView extends View {
                 cellView.update();
             }
         }
+        repaint();
     }
 }

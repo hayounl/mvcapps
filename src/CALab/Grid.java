@@ -129,6 +129,9 @@ public abstract class Grid extends Model {
 
         return myNeighbors;
     }
+
+    // overide these
+    public int getStatus() { return 0; }
     // cell phases:
     public void observe() {
         // call each cell's observe method and notify subscribers

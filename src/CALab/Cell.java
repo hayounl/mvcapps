@@ -76,6 +76,7 @@ public abstract class Cell extends Model {
     public abstract void reset(boolean randomly);
 
     public abstract int getStatus();
+    public abstract void setStatus(int i);
     public abstract Color getColor();
 
     public abstract int getAmbience();
